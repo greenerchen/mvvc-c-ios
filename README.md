@@ -20,7 +20,7 @@ protocol Coordinator {
 
 class AppCoordinator: Coordinator {
   var children: [Coordinator]
-  unowned let navigationController: UINavigationController
+  let navigationController: UINavigationController
   
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
@@ -85,7 +85,7 @@ class ViewController2: UIViewController {
 ## Business Logics
 View models and other service, worker components handles business logics.
 
-# Examples
+
 Say there is another login flow managed by `LoginCoordinator`. When a user taps the login button from ViewController1, it will trigger `AppCoordinator` to create `LoginCoordinator` and present `LoginViewController`. Afterwards, the user finish the login flow by calling the delgate method `loginDidFinish`, and it will trigger `AppCoordinator` to dismiss the login flow presentation and remove `LoginCoordinator` from its children coordinators.
 
 ```Swift
@@ -112,7 +112,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 class LoginCoordinator: Coordinator {
   var children: [Coordinator]
   weak var delegate: LoginCoordinatorDelegate?
-  unowned let navigationController: UINavigationController
+  let navigationController: UINavigationController
   
   init(navigationController: UINavigationController) {
     self.navigationController = navigationController
