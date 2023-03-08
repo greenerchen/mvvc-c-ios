@@ -5,6 +5,8 @@ The Coordinator pattern was introduced by [Soroush Khanlou](http://khanlou.com/)
 - ["Navigation in Swift" by John Sundell](https://www.swiftbysundell.com/articles/navigation-in-swift/)
 
 # Architecture
+![Coordinator](https://user-images.githubusercontent.com/1248888/223585328-338bfdf5-b464-4a84-9a44-683d1daee40b.png)
+
 ## Navigation
 A coordinator owns a navigation controller to present view controllers, that has a delegate reference to the coordinator to call delegate methods for naviagations. Each coordinator use the `start()` function to present its view controller(s). A coordinator also owns an array of children coordinator to present another navigation flow managed by its child coordinator.
 ```Swift
@@ -82,8 +84,6 @@ class ViewController2: UIViewController {
 ```
 ## Business Logics
 View models and other service, worker components handles business logics.
-
-![Coordinator](https://user-images.githubusercontent.com/1248888/223585328-338bfdf5-b464-4a84-9a44-683d1daee40b.png)
 
 # Examples
 Say there is another login flow managed by `LoginCoordinator`. When a user taps the login button from ViewController1, it will trigger `AppCoordinator` to create `LoginCoordinator` and present `LoginViewController`. Afterwards, the user finish the login flow by calling the delgate method `loginDidFinish`, and it will trigger `AppCoordinator` to dismiss the login flow presentation and remove `LoginCoordinator` from its children coordinators.
