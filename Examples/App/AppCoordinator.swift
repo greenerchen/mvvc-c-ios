@@ -39,7 +39,7 @@ extension AppCoordinator: DetailNavigationDelegate {
 
 extension AppCoordinator: PopupCoordinatorDelegate {
     func didFinishPopup() {
-        navigationController.viewControllers.last?.dismiss(animated: true)
+        navigationController.presentedViewController?.dismiss(animated: true)
         if let popup = children.last as? PopupCoordinator {
             detachChild(popup)
         }
